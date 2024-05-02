@@ -1,0 +1,21 @@
+cloud-architecture-diagram
+
+// Define groups and nodes
+Front-end {
+  User [icon: user]
+}
+Backend{
+  Account_Service [icon: user, color: green]
+  Property_Service [icon: home, color: orange]
+}
+Database [icon: database]{
+  UserDB [icon: database, color: green]
+  PropertyDB [icon: database, color: orange]
+}
+
+User <> Account_Service <> UserDB
+User <> Property_Service <> PropertyDB
+
+
+// Define connections
+

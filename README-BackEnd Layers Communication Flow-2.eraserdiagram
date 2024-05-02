@@ -1,0 +1,16 @@
+flowchart-diagram
+
+
+title BackEnd Layers Communication Flow
+
+// Define nodes and relationships
+Controller [icon: layers, color: blue]
+Service [icon: cpu, color: blue]
+Repository [icon: database, color: blue]
+DTO [icon: package, shape: document]
+Entity [icon: package, shape: document]
+Database [icon: database, color: orange]
+
+Controller > DTO > Service > Entity > Repository > Database
+
+
