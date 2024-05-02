@@ -67,6 +67,17 @@ if (typeof window !== "undefined") {
   import("bootstrap");
 }
 
+import ListingCardComp from "../mysrc/components/ListingCardComp";
+
+function App() {
+  return (
+    <div>
+      <ListingCardComp />
+    </div>
+  );
+}
+
+/*
 function App() {
   return (
     <>
@@ -172,5 +183,6 @@ function App() {
     </>
   );
 }
+*/
 
 export default App;
