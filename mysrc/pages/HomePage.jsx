@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ListingService from "../services/ListingService";
 import ListingGridComp from "../components/ListingGridComp";
-
+import HeaderComp from "../components/Navbar/HeaderComp";
 
 function HomePage() {
     const [listings, setListings] = useState([]);
@@ -24,10 +24,15 @@ function HomePage() {
 
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <ListingGridComp listings={listings} />
-    </div>
+    <>
+      {/* <!-- Main Header Nav --> */}
+      <HeaderComp />
+
+      <div>      
+        <h1>Home Page</h1>
+        <ListingGridComp listings={listings} />
+      </div>
+    </>
   )
 }
 

@@ -1,10 +1,10 @@
 
 
 import { useState } from "react";
-import selectedFiles from "../../../utils/selectedFiles";
+import selectedFiles from "../../utils/selectedFiles";
 
 
-const PropertyMediaUploader = () => {
+const CreateListingPhotosComp = () => {
   const [photos, setphotos] = useState([]);
 
   // multiple image select
@@ -92,15 +92,8 @@ const PropertyMediaUploader = () => {
       </div>
       {/* End .col */}
 
-      <div className="col-xl-12">
-        <div className="my_profile_setting_input">
-          <button className="btn btn1 float-start">Back</button>
-          <button className="btn btn2 float-end">Next</button>
-        </div>
-      </div>
-      {/* End .col */}
     </div>
   );
 };
 
-export default PropertyMediaUploader;
+export default CreateListingPhotosComp;

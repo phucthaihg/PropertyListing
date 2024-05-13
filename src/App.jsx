@@ -9,6 +9,7 @@ import NotFoundPage from "./pages/not-found";
 
 import HomePage from "../mysrc/pages/HomePage";
 import ListingDetailPage from "../mysrc/pages/ListingDetailPage";
+import CreateListingPage from "../mysrc/pages/CreateListingPage";
 
 
 if (typeof window !== "undefined") {
@@ -25,7 +26,7 @@ function App() {
             <Route path="/">
               <Route index element={<HomePage />} />
               <Route path="/listing/:listingId" element={<ListingDetailPage />} />
-
+              <Route path="/create-listing/" element={<CreateListingPage />} />
 
               <Route path="*" element={<NotFoundPage />} />
             </Route>

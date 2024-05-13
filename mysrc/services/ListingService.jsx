@@ -35,6 +35,15 @@ class ListingService {
             }, 1000);
         });
     }
+
+    createListing(listingData) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                sampleListings.push(listingData);
+                resolve(listingData);
+            }, 1000);
+        });
+    }
 }
 
 export default ListingService;
