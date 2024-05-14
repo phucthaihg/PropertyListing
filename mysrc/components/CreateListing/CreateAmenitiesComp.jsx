@@ -1,8 +1,24 @@
-const CreateAmenitiesComp = ({ loaded_amenities, amenities, onAmenityChange }) => {
+import React, { useState } from 'react';
+
+const CreateAmenitiesComp = ({ onChange }) => {
+  const availableAmenities =  ['Wifi', 'Parking', 'Kitchen', 'Washing Machine', 'TV'];
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
+
+  const handleAmenityChange = (amenity) => {
+    if (selectedAmenities.includes(amenity)) {
+      setSelectedAmenities(selectedAmenities.filter((a) => a !== amenity));
+    } else {
+      selectedAmenities.push(amenity);
+      setSelectedAmenities(selectedAmenities);
+    }
+    
+    onChange(selectedAmenities);
+  };
+
   return (
     <>
       {
-        Object.entries(loaded_amenities).map(([key, value], index) => (
+        availableAmenities.map((amenity) => (
           <div className="col-xxs-6 col-sm col-lg col-xl">
             <ul className="ui_kit_checkbox selectable-list">
               <li>
@@ -10,14 +26,16 @@ const CreateAmenitiesComp = ({ loaded_amenities, amenities, onAmenityChange }) =
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    id="customCheck1"
+                    id={amenity}
+                    checked={selectedAmenities.includes(amenity)}
+                    onChange={() => handleAmenityChange(amenity)}
                   />
-                  <label className="form-check-label" htmlFor="customCheck1">
-                    BBB
+                  <label  className="form-check-label" 
+                          htmlFor={amenity}>
+                    {amenity}
                   </label>
                 </div>
               </li>
-              {/* End li */}
             </ul>
           </div>
         ))}

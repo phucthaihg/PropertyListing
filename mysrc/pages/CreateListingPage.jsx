@@ -12,41 +12,13 @@ const listingService = new ListingService();
 const CreateListingPage = () => {
     const [listing, setListing] = useState(new ListingDto({}));
 
-    const handleOnChange = (e) => {
+    const handleOnChange = (newData) => {
         setListing({ 
             ...listing, 
-            [e.target.name]: e.target.value 
+            ...newData 
         });
     };
 
-    const handleOnAddressChange = (e) => {  
-        setListing({        
-            ...listing,        
-            address: {        
-                ...listing.address,        
-                [e.target.name]: e.target.value,        
-            },        
-        });
-    }
-
-    // Function to handle adding photos to ListingDto
-    const handleAddPhoto = (newPhoto) => {
-        setListing({ 
-            ...listing, 
-            photos: [
-                ...listing.photos, 
-                newPhoto
-            ] 
-        });
-    };
-
-    // Function to handle removing photos from ListingDto
-    const handleRemovePhoto = (index) => {
-        setListing({
-        ...listing,
-        photos: listing.photos.filter((_, i) => i !== index),
-        });
-    };
 
     const handleSaveListing = () => {
         console.log("Saving listing:", listing);
@@ -79,10 +51,8 @@ const CreateListingPage = () => {
                     <div className="row">
                         <div className="col-lg-12">
                             <h3 className="mb30">Create Listing</h3>
-                        </div>
-                        {console.log("Listing:", listing)}
+                        </div>                        
                         <CreateListingHeaderComp
-                            listing={listing}
                             onChange={handleOnChange}
                         />
                     </div>
@@ -91,11 +61,10 @@ const CreateListingPage = () => {
                     <div className="row">
                         <div className="col-lg-12">
                             <h3 className="mb30">Location</h3>
-                        </div>
-                        {console.log("Listing address:", listing.address)}
+                        </div>                        
+                      
                         <CreateLocationComp
-                            address={listing.address}
-                            onChange={handleOnAddressChange}
+                            onChange={handleOnChange}
                         />
                     </div>
                 </div>
@@ -105,8 +74,9 @@ const CreateListingPage = () => {
                     <div className="col-lg-12">
                         <h3 className="mb30">Property media</h3>
                     </div>
+                    
                     <CreateListingPhotosComp
-                        
+                        onChange={handleOnChange}
                     />
                 </div>
 

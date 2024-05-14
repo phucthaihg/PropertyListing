@@ -1,4 +1,19 @@
-const CreateLocationComp = ({address, onChange}) => {
+import React, { useState } from "react";
+
+const CreateLocationComp = ({onChange}) => {
+  const [address, setAddress] = useState({  
+    address01: "",
+    city: "",
+    state: "",
+    zipcode: ""
+  });
+
+  const handleAddressChange = (e) => {
+    const { name, value } = e.target;
+    setAddress({ ...address, [name]: value });
+    onChange({ address });
+  };
+
   return (
     <>
       <div className="col-lg-12">
@@ -8,7 +23,7 @@ const CreateLocationComp = ({address, onChange}) => {
                   id="address01" 
                   name="address01" 
                   value={address.address01} 
-                  onChange={onChange}/>
+                  onChange={handleAddressChange}/>
         </div>
       </div>
       {/* End .col */}
@@ -20,7 +35,7 @@ const CreateLocationComp = ({address, onChange}) => {
                   id="city" 
                   name="city" 
                   value={address.city} 
-                  onChange={onChange} />
+                  onChange={handleAddressChange} />
         </div>
       </div>
       {/* End .col */}
@@ -32,7 +47,7 @@ const CreateLocationComp = ({address, onChange}) => {
                   id="state" 
                   name="state" 
                   value={address.state} 
-                  onChange={onChange} />
+                  onChange={handleAddressChange} />
         </div>
       </div>
       {/* End .col */}
@@ -44,7 +59,7 @@ const CreateLocationComp = ({address, onChange}) => {
                   id="zipcode" 
                   name="zipcode" 
                   value={address.zipcode} 
-                  onChange={onChange} />
+                  onChange={handleAddressChange} />
         </div>
       </div>
       {/* End .col */}

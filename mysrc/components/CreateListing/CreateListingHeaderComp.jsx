@@ -1,9 +1,68 @@
 import CreateAmenitiesComp from "./CreateAmenitiesComp";
+import React, { useState } from "react";
 
-const CreateListingHeaderComp = ({listing, onChange}) => {
+const CreateListingHeaderComp = ({onChange}) => {
+
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [listingType, setListingType] = useState("");
+    const [price, setPrice] = useState("");
+    const [sqFt, setSqFt] = useState("");
+    const [beds, setBeds] = useState("");
+    const [baths, setBaths] = useState("");
+    const [garages, setGarages] = useState("");
+    const [yearBuilt, setYearBuilt] = useState("");
+    const [videos, setVideos] = useState("");
+    const [amenities, setAmenities] = useState([]);
+
+    const handleInputChange = (e) => {  
+        const { name, value } = e.target;
+        console.log("name:", name, "value:", value);
+        switch(name) {
+            case "title":
+                setTitle(value);
+                break;
+            case "description":
+                setDescription(value);
+                break;
+            case "listingType":
+                setListingType(value);
+                break;
+            case "price":
+                setPrice(value);
+                break;
+            case "sqFt":
+                setSqFt(value);
+                break;
+            case "beds":
+                setBeds(value);
+                break;
+            case "baths":
+                setBaths(value);
+                break;
+            case "garages":
+                setGarages(value);
+                break;
+            case "yearBuilt":
+                setYearBuilt(value);
+                break;
+            case "videos":
+                setVideos(value);
+                break;
+            default:
+                break;
+        }
+
+        onChange({title, description, listingType, price, sqFt, beds, baths, garages, yearBuilt, videos});
+    }
+
+    const handleAmenityChange = (newAmenities) => {
+        setAmenities(newAmenities);
+        onChange({amenities: newAmenities});
+    }
+
     return (
         <>
-        {console.log("CreateListingHeaderComp listing:", listing)}
             <div className="col-lg-12">
                 <div className="my_profile_setting_input form-group">
                     <label htmlFor="propertyTitle">Property Title</label>
@@ -11,8 +70,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                             className="form-control" 
                             id="title" 
                             name="title"
-                            value={listing.title}
-                            onChange={onChange}
+                            value={title}
+                            onChange={handleInputChange}
                     />
                 </div>
             </div>
@@ -26,8 +85,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                         rows="7"
                         id="description"
                         name="description"
-                        value={listing.description}
-                        onChange={onChange}
+                        value={description}
+                        onChange={handleInputChange}
                     ></textarea>
                 </div>
             </div>
@@ -42,8 +101,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                         listing-width="100%"
                         id="listingType"
                         name="listingType"
-                        value={listing.listingType}
-                        onChange={onChange}
+                        value={listingType}
+                        onChange={handleInputChange}
                     >
                         <option listing-tokens="type1">Type1</option>
                         <option listing-tokens="Type2">Type2</option>
@@ -63,8 +122,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                         className="form-control"
                         id="price"
                         name="price"
-                        value={listing.price}
-                        onChange={onChange}
+                        value={price}
+                        onChange={handleInputChange}
                     />
                 </div>
             </div>
@@ -78,18 +137,14 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                         className="form-control"
                         id="sqFt"
                         name="sqFt"
-                        value={listing.sqFt}
-                        onChange={onChange}
+                        value={sqFt}
+                        onChange={handleInputChange}
                     />
                 </div>
             </div>
             {/* End .col */}
 
-        
-
             <div className="row">                
-
-               
                 <div className="col-lg-6 col-xl-4">
                     <div className="my_profile_setting_input form-group">
                         <label htmlFor="bedRooms">Bedrooms</label>
@@ -97,8 +152,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                                 className="form-control" 
                                 id="beds" 
                                 name="beds" 
-                                value={listing.beds}
-                                onChange={onChange}
+                                value={beds}
+                                onChange={handleInputChange}
                         />
                     </div>
                 </div>
@@ -111,8 +166,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                                 className="form-control"    
                                 id="baths" 
                                 name="baths" 
-                                value={listing.baths}
-                                onChange={onChange}
+                                value={baths}
+                                onChange={handleInputChange}
                         />
                     </div>
                 </div>
@@ -126,8 +181,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                                 className="form-control" 
                                 id="garages" 
                                 name="garages" 
-                                value={listing.garages}
-                                onChange={onChange}
+                                value={garages}
+                                onChange={handleInputChange}
                         />
                     </div>
                 </div>
@@ -140,8 +195,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                                 type="text" 
                                 className="form-control" 
                                 id="yearBuild" 
-                                value={listing.yearBuilt}
-                                onChange={onChange}
+                                value={yearBuilt}
+                                onChange={handleInputChange}
                         />
                     </div>
                 </div>
@@ -155,6 +210,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                             className="form-control" 
                             id="videos" 
                             name="videos" 
+                            value={videos}
+                            onChange={handleInputChange}
                         />
                     </div>
                 </div>
@@ -165,10 +222,8 @@ const CreateListingHeaderComp = ({listing, onChange}) => {
                 </div>
 
                 <CreateAmenitiesComp 
-                    amenities={listing.amenities}
-                    onAmenityChange={handleAmenityChange}
+                    onChange={handleAmenityChange}
                 />
-                
             </div>
         </>
     );

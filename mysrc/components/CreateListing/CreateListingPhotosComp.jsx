@@ -4,18 +4,26 @@ import { useState } from "react";
 import selectedFiles from "../../utils/selectedFiles";
 
 
-const CreateListingPhotosComp = () => {
+const CreateListingPhotosComp = ({onChange}) => {
   const [photos, setphotos] = useState([]);
 
   // multiple image select
-  const multipleImage = (e) => {
+  const handleFileChange = (e) => {
+    console.log("e.target.files", e.target.files);
+    console.log("selectedFiles", selectedFiles(e));
+
     // checking is same file matched with old stored array
     const isExist = photos?.some((file1) =>
       selectedFiles(e)?.some((file2) => file1.name === file2.name)
     );
 
+    console.log("isExist", isExist);
+
     if (!isExist) {
-      setphotos((old) => [...old, ...selectedFiles(e)]);
+      photos.push(...selectedFiles(e));
+      console.log("photos", photos);
+
+      onChange(photos);
     } else {
       alert("You have selected one image already!");
     }
@@ -25,6 +33,7 @@ const CreateListingPhotosComp = () => {
   const deleteImage = (name) => {
     const deleted = photos?.filter((file) => file.name !== name);
     setphotos(deleted);
+    onChange(deleted);
   };
 
   return (
@@ -66,7 +75,7 @@ const CreateListingPhotosComp = () => {
         <div className="portfolio_upload">
           <input
             type="file"
-            onChange={multipleImage}
+            onChange={handleFileChange }
             multiple
             accept="image/png, image/gif, image/jpeg"
           />
